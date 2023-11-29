@@ -1,0 +1,100 @@
+<div class="container bg- ">
+
+  <header class="bg-primary text-center d-flex" style="position: fixed; width: 100%;height: 50px;">
+    <h1 class="text-light" style="align-items: start;"><b>🛍️Online Shopping Application</b></h1>
+    <button class="btn btn-success" style="align-content: end;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <h2> 🛒 Cart </h2>
+    </button>
+  </header>
+
+
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">S.No.</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Particular Brand Images</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of post.products; let i = index;">
+        <th scope="row">{{i+1}}</th>
+        <td>
+          <h3>{{item.brand}}</h3>
+        </td>
+        <td>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Images</th>
+                <th scope="col">Description</th>
+                <th scope="col">price</th>
+                <th scope="col"> Discount Percentage</th>
+                <th scope="col">Add It </th>
+                <th scope="col">Buy Now </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item1 of item.images; let i = index;">
+                <th scope="row">{{i+1}}</th>
+                <td><img width="100px" height="60px" src="{{item1}}"> </td>
+                <td>{{item.description}}</td>
+                <td class="text-danger"> {{item.price}} </td>
+                <td class=""> {{item.discountPercentage}}% </td>
+                <td><button class="btn btn-warning" (click)="addcart(item,i)"> Add To Cart </button></td>
+                <td> <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+                    (click)="buynow(item,i)">Buy Now </button> </td>
+                   
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h1 class="modal-title fs-5 " id="staticBackdropLabel">Welcome To Cart</h1>
+        <button type="button" class="btn-close btn btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" >
+
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{additem}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{dtitle}}</h5>
+            <p class="card-text"> {{description}} </p>
+            <a href="#" class="btn btn-primary"> Price :-💵 {{price}}</a>
+            <h3> Total : Price💰 {{sum}} </h3>
+          </div>
+          <button (click)="remove()" class="btn btn-danger">Remove Product</button>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div  >
+
+
+
+
+
+
+
+
+
+
